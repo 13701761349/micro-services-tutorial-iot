@@ -1,0 +1,20 @@
+version: '3'
+services:
+  influx:
+    image: tutum/influxdb
+    container_name: influx
+    ports:
+      - 8086:8086
+      - 8083:8083
+  serializer:
+    env_file: env
+    build: ../services/serializer/
+    container_name: panserializer
+    ports:
+      - 10000:10000
+  frontend:
+    env_file: env
+    build: ../frontend/
+    container_name: panfrontend
+    ports:
+      - 10001:10001
